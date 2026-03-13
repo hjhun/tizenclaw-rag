@@ -30,11 +30,11 @@ Pre-built knowledge databases for Tizen API semantic search:
 
 PaddleOCR PP-OCRv3 on-device text extraction engine.
 
-| Component | File | Lite (기본) | Full |
+| Component | File | Lite (default) | Full |
 |-----------|------|------------|------|
 | Detection | `det.onnx` | 2.4 MB | 2.4 MB |
-| Recognition | `rec.onnx` | **13 MB** (한국어+영어) | **84 MB** (CJK 전체) |
-| Dictionary | `ppocr_keys.txt` | 11,945자 | 6,622자 |
+| Recognition | `rec.onnx` | **13 MB** (Korean + English) | **84 MB** (Full CJK) |
+| Dictionary | `ppocr_keys.txt` | 11,945 chars | 6,622 chars |
 
 **CLI tool**: `tizenclaw-ocr`
 ```bash
@@ -49,10 +49,10 @@ tizenclaw-ocr <image_path> [--json]
 ## Build
 
 ```bash
-# 기본 (경량 한국어+영어 모델)
+# Default (lightweight Korean + English model)
 gbs build -A x86_64 --include-all
 
-# CJK 전체 모델
+# Full CJK model
 gbs build -A x86_64 --include-all --define "ocr_model full"
 ```
 
