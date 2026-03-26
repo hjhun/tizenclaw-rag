@@ -1,6 +1,8 @@
 <manifest>
     <request>
         <domain name="_" />
+        <privilege>http://tizen.org/privilege/screen_connector_watcher</privilege>
+        <privilege>http://tizen.org/privilege/display</privilege>
     </request>
     <assign>
         <filesystem path="/opt/usr/share/tizen-tools/tizenclaw-screen-perceptor/tizenclaw-screen-perceptor" exec_label="System" />
