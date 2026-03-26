@@ -39,8 +39,20 @@ SET_TARGET_PROPERTIES(tizenclaw-ocr-cli PROPERTIES OUTPUT_NAME "tizenclaw-ocr"
   INSTALL_RPATH "${ORT_RUNTIME_DIR}"
   BUILD_WITH_INSTALL_RPATH TRUE)
 
+INCLUDE(FindPkgConfig)
+PKG_CHECK_MODULES(TIZEN_DEPS REQUIRED ecore ecore-wl2 screen_connector_watcher libtbm aul)
+
+ADD_EXECUTABLE(tizenclaw-screen-perceptor src/screen_perceptor_cli.cc)
+TARGET_INCLUDE_DIRECTORIES(tizenclaw-screen-perceptor PRIVATE ${ORT_INCLUDE_DIR} ${TIZEN_DEPS_INCLUDE_DIRS})
+TARGET_LINK_DIRECTORIES(tizenclaw-screen-perceptor PRIVATE ${ORT_LIB_DIR} ${TIZEN_DEPS_LIBRARY_DIRS})
+TARGET_LINK_LIBRARIES(tizenclaw-screen-perceptor tizenclaw-ocr ${TIZEN_DEPS_LIBRARIES})
+SET_TARGET_PROPERTIES(tizenclaw-screen-perceptor PROPERTIES
+  INSTALL_RPATH "${ORT_RUNTIME_DIR}"
+  BUILD_WITH_INSTALL_RPATH TRUE)
+
 INSTALL(TARGETS tizenclaw-ocr DESTINATION "${APP_DATA_DIR}/lib")
 INSTALL(TARGETS tizenclaw-ocr-cli DESTINATION ${OCR_CLI_DIR})
+INSTALL(TARGETS tizenclaw-screen-perceptor DESTINATION "/opt/usr/share/tizen-tools/tizenclaw-screen-perceptor")
 INSTALL(FILES include/tizenclaw_ocr_api.h DESTINATION "${APP_DATA_DIR}/include")
 INSTALL(FILES res/tool.md DESTINATION ${OCR_CLI_DIR})
 

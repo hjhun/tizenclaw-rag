@@ -6,9 +6,13 @@ License:    Apache-2.0
 Source0:    %{name}-%{version}.tar.gz
 
 BuildRequires: cmake
+BuildRequires: pkgconfig(ecore)
+BuildRequires: pkgconfig(ecore-wl2)
+BuildRequires: libscreen_connector_watcher-devel
+BuildRequires: pkgconfig(libtbm)
+BuildRequires: pkgconfig(aul)
 
 %description
-Consolidated ML/AI asset package for TizenClaw.
 Contains ONNX Runtime library, RAG knowledge databases, embedding model,
 and PaddleOCR PP-OCRv3 on-device OCR engine with CLI tool.
 
@@ -40,6 +44,13 @@ mkdir -p %{buildroot}/opt/usr/share/tizenclaw/lib
 mkdir -p %{buildroot}/opt/usr/share/tizenclaw/include
 mkdir -p %{buildroot}/opt/usr/share/tizenclaw/models
 mkdir -p %{buildroot}/opt/usr/share/tizen-tools/cli/tizenclaw-ocr
+mkdir -p %{buildroot}/opt/usr/share/tizen-tools/tizenclaw-screen-perceptor
+
+%post
+if [ -f /opt/usr/share/tizen-tools/tizenclaw-screen-perceptor/tizenclaw-screen-perceptor ]; then
+    chsmack -a System /opt/usr/share/tizen-tools/tizenclaw-screen-perceptor/tizenclaw-screen-perceptor || true
+    chsmack -e System /opt/usr/share/tizen-tools/tizenclaw-screen-perceptor/tizenclaw-screen-perceptor || true
+fi
 
 %files
 %defattr(-,root,root,-)
@@ -49,3 +60,4 @@ mkdir -p %{buildroot}/opt/usr/share/tizen-tools/cli/tizenclaw-ocr
 /opt/usr/share/tizenclaw/include/
 /opt/usr/share/tizenclaw/models/
 /opt/usr/share/tizen-tools/cli/tizenclaw-ocr/
+/opt/usr/share/tizen-tools/tizenclaw-screen-perceptor/
