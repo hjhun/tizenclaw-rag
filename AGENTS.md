@@ -7,12 +7,12 @@ This document defines the core development process (Plan → Design → Develop 
 
 ## 1. Plan
 - Accurately understand the objectives and user requirements.
-- Write a work unit (`task.md`) and establish a high-level plan before proceeding.
+- Write a work unit (`.agents/workflows/task.md`) and establish a high-level plan before proceeding.
 
 ## 2. Design
 - Analyze existing code and check applicable workflows to ensure the appropriate approach is selected.
 - **CRITICAL**: The Agent MUST strictly adhere to the project's coding style as defined in [`.agents/workflows/coding_rules.md`](.agents/workflows/coding_rules.md) (e.g., Google C++ Style, 2-space indentation, trailing underscore `_` for members). Do not introduce or mimic inconsistent styles found in older legacy parts of the codebase.
-- Establish architectural/structural decisions and write a detailed implementation plan (`implementation_plan.md`) if necessary.
+- Establish architectural/structural decisions and write a detailed implementation plan (`.agents/workflows/implementation_plan.md`) if necessary.
 
 ## 3. Develop
 - Modify source code and add/modify unit tests based on the design approach.
